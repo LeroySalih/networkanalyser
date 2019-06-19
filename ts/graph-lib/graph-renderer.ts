@@ -24,7 +24,7 @@ export class GraphRenderer {
   }
 
   static renderNode (node: IGraphNode, canvas: SVGSVGElement): void {
-    console.log('Rendering ', node, 'to', canvas)
+    
     const circleElement = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     circleElement.setAttribute("cx", node.x);
     circleElement.setAttribute("cy", node.y);
@@ -40,7 +40,7 @@ export class GraphRenderer {
   }
 
   static renderEdge (edge: IGraphEdge, canvas: SVGSVGElement): void {
-    console.log('Rendering ', edge, 'to', canvas)
+    
     const lineElement = document.createElementNS("http://www.w3.org/2000/svg", "line");
     lineElement.setAttribute("x1", edge.n1.x);
     lineElement.setAttribute("y1", edge.n1.y);

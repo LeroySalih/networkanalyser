@@ -1,6 +1,6 @@
 
 
-
+import {IReporter} from './reporter'
 import {GraphEdge} from './graph-edge'
 
 // a walk an ordered collection of edges
@@ -11,12 +11,29 @@ import {GraphEdge} from './graph-edge'
 // a Hamiltonian cycle: cycle that visits every node.
 
 
-export class GraphWalk {
+export class GraphWalk implements IReporter{
   
   edges: GraphEdge[] = []
 
   constructor() {
 
+  }
+
+  get report(): string {
+    // i fthere are no nodes, return an empty string/
+    if (this.edges.length == 0)
+      return "";
+
+    // initialise the return string with the first node of the first edge.
+    // then loop through the nodes, adding the second node of each edge.
+    let nodes: string = this.edges[0].n1.id;
+    console.log('nodes', nodes)
+    this.edges.forEach((edge) => {
+      console.log(edge.report)
+      nodes += `, ${edge.n2.id}`
+    });
+    console.log('nodes', nodes)
+    return nodes;
   }
 
   addEdge(edge: GraphEdge) {
@@ -35,7 +52,7 @@ export class GraphWalk {
     // return false without adding.
 
     if (edge.n1.id != lastEdge.n2.id){
-      return false;
+      throw new Error(`Edge ${edge.n1.id} does not match the last node of the walk` );
     }
 
     // add the edge

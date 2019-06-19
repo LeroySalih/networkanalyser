@@ -1,14 +1,14 @@
-import { IReporter } from './reporter' 
+import { IReporter } from './reporter'
 
 export interface IGraphNode {
   id: string;
-} 
+}
 
 export class GraphNode implements IGraphNode, IReporter {
 
-  constructor (public id: string, 
-               public x: number, 
-               public y: number) {
+  constructor(public id: string,
+    public x: number,
+    public y: number) {
 
   }
 

@@ -11,26 +11,30 @@ export class NetworkAnalyserApp {
     const nw1 = new GraphNetwork();
     const n1 = nw1.createNode('A', 100, 100);
     const n2 = nw1.createNode('B', 200, 200);
-    const n3 = nw1.createNode('C', 150, 200);
+    const n3 = nw1.createNode('C', 100, 200);
+    const n4 = nw1.createNode('D', 150, 250);
 
     const edgeAB = nw1.joinNodes('A', 'B', 6)
-    const edgeAC = nw1.joinNodes('A', 'C', 4)
+    const edgeBC = nw1.joinNodes('B', 'C', 4)
+    const edgeBD = nw1.joinNodes('B', 'D', 4)
+    const edgeCD = nw1.joinNodes('C', 'D', 4)
 
-    console.log('edgeAC', edgeAC)
-    console.log('edgeAB reports:', edgeAB.report)
-    console.log('edgeAC reports:', edgeAC.report)
 
     const walk = new GraphWalk()
     walk.addEdge(edgeAB);
-    walk.addEdge(edgeAC);
+    walk.addEdge(edgeBC);
+    console.log(walk.report)
 
     GraphRenderer.render(nw1, 'canvas');
 
-    const elem = document.getElementById('lblNodeCount');
+    var elem = document.getElementById('lblNodeCount');
     elem.innerHTML = nw1.nodes.length
 
     elem = document.getElementById('lblNodeAdegree');
     elem.innerHTML = nw1.degree('A')
+
+    elem = document.getElementById('lblWalkNnodes')
+    elem.innerHTML = walk.report
 
   }
 }
